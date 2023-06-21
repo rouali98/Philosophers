@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:23:39 by rouali            #+#    #+#             */
-/*   Updated: 2023/05/27 23:05:04 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/21 19:32:50 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,32 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdio.h>
-#include <sys/time.h>
+# include <sys/time.h>
 
-// pthread_mutex_t mutex;
-
-typedef struct s_information
+typedef struct s_data
 {
-    int nbr_philo;
     pthread_mutex_t *forks;
-    pthread_mutex_t write;
-    long int time_to_start;
-    long int time_to_sleep;
-    long int time_to_eat;
-    long int time_to_die;
+    long time_created;
+    int nbr_philo;
+    int nbr_eat;
+    int nbr_die;
+    int nbr_sleep;
     int mat;
-} information_t;
+    pthread_mutex_t write;
+} t_data;
 
-typedef struct s_philo
+typedef struct philo
 {
     int id;
     pthread_t philo;
-    int i_left;
-    int i_right;
-    long last_mil;
-    information_t *info;
-} philo_t;
+    long t_eat;
+    int fork_left;
+    int fork_right;
+    int died;
+    t_data *info_data;
+} s_philo;
+
+int	ft_atoi(const char *str);
+
 
 #endif
