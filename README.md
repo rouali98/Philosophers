@@ -1,1 +1,1 @@
-# MiniShell
+# Philosophers
