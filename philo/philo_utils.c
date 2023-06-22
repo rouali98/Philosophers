@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:24:55 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/22 18:58:41 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/22 21:34:02 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long	ft_curent_time(void)
 }
 
 // Sleep
-int	sleep_ino(int time, s_philo *philo)
+int	sleep_ino(int time, t_philo *philo)
 {
 	long	newtime;
 	int		mort;
@@ -37,19 +37,19 @@ int	sleep_ino(int time, s_philo *philo)
 		mort = philo->info_data->mat;
 		pthread_mutex_unlock(&philo->info_data->write);
 		if (mort == 1)
-			break;
+			break ;
 		usleep(250);
 	}
 	return (0);
 }
 
 // Print
-void	ft_print(s_philo *philo, char *msg)
+void	ft_print(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info_data->write);
 	if (philo->info_data->mat == 0)
-		printf("%ld %d %s\n", (ft_curent_time()
-				- philo->info_data->time_created), philo->id, msg);
+		printf("%ld %d %s\n", (ft_curent_time() \
+			- philo->info_data->time_created), philo->id, msg);
 	pthread_mutex_unlock(&philo->info_data->write);
 }
 
@@ -70,7 +70,7 @@ int	upd_data(t_data *data, int ac, char **av)
 		return (1);
 	if (ac == 6)
 	{
-		data->tass_meal = ft_atoi(av[5]) + 1;
+		data->tass_meal = ft_atoi(av[5] + 1);
 		if (ft_atoi(av[5]) <= 0)
 			return (1);
 	}
@@ -80,10 +80,13 @@ int	upd_data(t_data *data, int ac, char **av)
 }
 
 // Update_Philosophers
-int	update_philo(t_data *data, s_philo *philosophers)
+int	update_philo(t_data *data, t_philo *philosophers)
 {
-	int i = 0;
-	long curent_time = ft_curent_time();
+	int		i;
+	long	curent_time;
+
+	i = 0;
+	curent_time = ft_curent_time();
 	while (i < data->nbr_philo)
 	{
 		philosophers[i].id = i + 1;

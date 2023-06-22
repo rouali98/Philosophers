@@ -6,19 +6,18 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:23:39 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/22 17:32:56 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 00:25:19 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 # include <sys/time.h>
-# include <unistd.h>
-#include <limits.h>
 
 typedef struct s_data
 {
@@ -43,13 +42,21 @@ typedef struct philo
 	int				died;
 	int				cdead;
 	t_data			*info_data;
-}					s_philo;
+}					t_philo;
 
-int					ft_atoi(char *str);
+int		ft_atoi(char *str);
 
-long				ft_curent_time(void);
-int					sleep_ino(int time, s_philo *philo);
-void				ft_print(s_philo *philo, char *msg);
-int					upd_data(t_data *data, int ac, char **av);
+long	ft_curent_time(void);
+int		sleep_ino(int time, t_philo *philo);
+void	ft_print(t_philo *philo, char *msg);
+int		upd_data(t_data *data, int ac, char **av);
+
+void	*routine(void *arg);
+
+int		create(t_data *data, t_philo *philosophers);
+
+int		destroy_mutex(t_data *data, t_philo *philosophers);
+int		ft_err_data(t_data *data);
+int		ft_err(void);
 
 #endif
