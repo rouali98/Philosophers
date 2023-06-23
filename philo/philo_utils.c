@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:24:55 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/22 21:34:02 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 01:44:28 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	upd_data(t_data *data, int ac, char **av)
 		return (1);
 	if (ac == 6)
 	{
-		data->tass_meal = ft_atoi(av[5] + 1);
-		if (ft_atoi(av[5]) <= 0)
+		data->tass_meal = ft_atoi(av[5]);
+		if (ft_atoi(av[5]) == -1)
 			return (1);
 	}
 	else

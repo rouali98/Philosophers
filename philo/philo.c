@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:23:44 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 00:34:08 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 01:45:19 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_countari_mort(t_data *data, t_philo *philosophers)
 	j = 0;
 	while (j < data->nbr_philo)
 	{
+		if (data->nbr_philo == 1)
+			return (0);
 		pthread_mutex_lock(&data->write);
 		cdead = philosophers[j].cdead;
 		pthread_mutex_unlock(&data->write);
@@ -64,10 +66,13 @@ int	mort(t_data *data, t_philo *philosophers)
 	return (0);
 }
 
-int	all_died(t_data *data, t_philo *philosophers)
+int	all_died(int ac, t_data *data, t_philo *philosophers)
 {
-	if (ft_countari_mort(data, philosophers) == -1)
-		return (-1);
+	if (ac == 6)
+	{
+		if (ft_countari_mort(data, philosophers) == -1)
+			return (-1);
+	}
 	if (mort(data, philosophers) == -1)
 		return (-1);
 	if (data->mat)
@@ -97,8 +102,8 @@ int	main(int ac, char **av)
 	create(data, philosophers);
 	while (1)
 	{
-		if (all_died(data, philosophers) == -1)
-			break ;
+		if (all_died(ac, data, philosophers) == -1)
+			return (-1);
 	}
 	destroy_mutex(data, philosophers);
 	return (0);
