@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:11:21 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 00:20:50 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 11:06:37 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	destroy_mutex(t_data *data, t_philo *philosophers)
 	i = 0;
 	while (i < data->nbr_philo)
 	{
-		pthread_join(philosophers[i].info_data->philo[i], NULL);
+		pthread_join(data->philo[i], NULL);
 		i++;
 	}
 	i = 0;
@@ -28,6 +28,12 @@ int	destroy_mutex(t_data *data, t_philo *philosophers)
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data->write);
+	free(data->forks);
+	free(data->philo);
+	free(data);
+	free(philosophers);
+	(void)philosophers;
 	return (0);
 }
 

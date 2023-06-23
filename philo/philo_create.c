@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:53 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 00:31:03 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:49:17 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	create(t_data *data, t_philo *philosophers)
 	int		i;
 
 	curent_time = ft_curent_time();
-	i = 0;
 	ft_create(curent_time, data, philosophers);
 	i = 1;
 	while (i < data->nbr_philo)

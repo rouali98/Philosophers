@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:24:55 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 01:44:28 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:44:57 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_print(t_philo *philo, char *msg)
 int	upd_data(t_data *data, int ac, char **av)
 {
 	data->nbr_philo = ft_atoi(av[1]);
-	if (ft_atoi(av[1]) == -1)
+	if (ft_atoi(av[1]) <= 0)
 		return (1);
 	data->nbr_die = ft_atoi(av[2]);
 	if (ft_atoi(av[2]) == -1)
@@ -70,8 +70,8 @@ int	upd_data(t_data *data, int ac, char **av)
 		return (1);
 	if (ac == 6)
 	{
-		data->tass_meal = ft_atoi(av[5]);
-		if (ft_atoi(av[5]) == -1)
+		data->tass_meal = ft_atoi(av[5]) + 1;
+		if (ft_atoi(av[5]) <= 0)
 			return (1);
 	}
 	else
@@ -80,21 +80,21 @@ int	upd_data(t_data *data, int ac, char **av)
 }
 
 // Update_Philosophers
-int	update_philo(t_data *data, t_philo *philosophers)
-{
-	int		i;
-	long	curent_time;
+// int	update_philo(t_data *data, t_philo *philosophers)
+// {
+// 	int		i;
+// 	long	curent_time;
 
-	i = 0;
-	curent_time = ft_curent_time();
-	while (i < data->nbr_philo)
-	{
-		philosophers[i].id = i + 1;
-		philosophers[i].fork_left = (i + 1) % data->nbr_philo;
-		philosophers[i].t_eat = curent_time;
-		philosophers[i].info_data = data;
-		philosophers[i].fork_right = i;
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	curent_time = ft_curent_time();
+// 	while (i < data->nbr_philo)
+// 	{
+// 		philosophers[i].id = i + 1;
+// 		philosophers[i].fork_left = (i + 1) % data->nbr_philo;
+// 		philosophers[i].t_eat = curent_time;
+// 		philosophers[i].info_data = data;
+// 		philosophers[i].fork_right = i;
+// 		i++;
+// 	}
+// 	return (0);
+// }

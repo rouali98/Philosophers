@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:02 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 01:35:52 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 12:51:20 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_routine(t_philo	*philo, int data_mat)
 		data_mat = philo->info_data->mat;
 		pthread_mutex_unlock(&philo->info_data->write);
 		if (data_mat)
-			break ;
+			return ;
 		pthread_mutex_lock(&philo->info_data->forks[philo->fork_right]);
 		ft_print(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->info_data->forks[philo->fork_left]);
