@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:24:55 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 12:44:57 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:23:08 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	sleep_ino(int time, t_philo *philo)
 	while (ft_curent_time() < (newtime + time))
 	{
 		pthread_mutex_lock(&philo->info_data->write);
-		mort = philo->info_data->mat;
+			mort = philo->info_data->died;
 		pthread_mutex_unlock(&philo->info_data->write);
 		if (mort == 1)
 			break ;
@@ -47,7 +47,7 @@ int	sleep_ino(int time, t_philo *philo)
 void	ft_print(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->info_data->write);
-	if (philo->info_data->mat == 0)
+	if (philo->info_data->died == 0)
 		printf("%ld %d %s\n", (ft_curent_time() \
 			- philo->info_data->time_created), philo->id, msg);
 	pthread_mutex_unlock(&philo->info_data->write);
@@ -78,23 +78,3 @@ int	upd_data(t_data *data, int ac, char **av)
 		data->tass_meal = -1;
 	return (0);
 }
-
-// Update_Philosophers
-// int	update_philo(t_data *data, t_philo *philosophers)
-// {
-// 	int		i;
-// 	long	curent_time;
-
-// 	i = 0;
-// 	curent_time = ft_curent_time();
-// 	while (i < data->nbr_philo)
-// 	{
-// 		philosophers[i].id = i + 1;
-// 		philosophers[i].fork_left = (i + 1) % data->nbr_philo;
-// 		philosophers[i].t_eat = curent_time;
-// 		philosophers[i].info_data = data;
-// 		philosophers[i].fork_right = i;
-// 		i++;
-// 	}
-// 	return (0);
-// }

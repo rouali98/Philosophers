@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:23:44 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 12:48:39 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:19:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_countari_mort(t_data *data, t_philo *philosophers)
 		if (eated == data->nbr_philo)
 		{
 			pthread_mutex_lock(&data->write);
-			data->mat = 1;
+			data->died = 1;
 			pthread_mutex_unlock(&data->write);
 			return (-1);
 		}
@@ -52,10 +52,10 @@ int	mort(t_data *data, t_philo *philosophers)
 		pthread_mutex_lock(&data->write);
 		time_die = (ft_curent_time() - philosophers[i].t_eat);
 		pthread_mutex_unlock(&data->write);
-		if (time_die > data->nbr_die)
+		if (time_die >= data->nbr_die)
 		{
 			pthread_mutex_lock(&data->write);
-			data->mat = 1;
+			data->died = 1;
 			pthread_mutex_unlock(&data->write);
 			pthread_mutex_lock(&data->write);
 			printf("%ld %d died\n", (ft_curent_time() - data->time_created),
@@ -79,7 +79,7 @@ int	all_died(int ac, t_data *data, t_philo *philosophers)
 	}
 	if (mort(data, philosophers) == -1)
 		return (-1);
-	if (data->mat)
+	if (data->died)
 		return (-1);
 	return (0);
 }

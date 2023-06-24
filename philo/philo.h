@@ -6,7 +6,7 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:23:39 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 10:44:10 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:19:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_data
 	int				nbr_eat;
 	int				nbr_die;
 	int				nbr_sleep;
-	int				mat;
+	int				died;
 	int				tass_meal;
 	pthread_mutex_t	write;
 	pthread_t		*philo;

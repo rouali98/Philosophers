@@ -6,20 +6,20 @@
 /*   By: rouali <rouali@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:02 by rouali            #+#    #+#             */
-/*   Updated: 2023/06/23 12:51:20 by rouali           ###   ########.fr       */
+/*   Updated: 2023/06/23 16:19:15 by rouali           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_routine(t_philo	*philo, int data_mat)
+void	ft_routine(t_philo	*philo, int data_died)
 {
 	while (1)
 	{
 		pthread_mutex_lock(&philo->info_data->write);
-		data_mat = philo->info_data->mat;
+		data_died = philo->info_data->died;
 		pthread_mutex_unlock(&philo->info_data->write);
-		if (data_mat)
+		if (data_died)
 			return ;
 		pthread_mutex_lock(&philo->info_data->forks[philo->fork_right]);
 		ft_print(philo, "has taken a fork");
@@ -44,12 +44,12 @@ void	ft_routine(t_philo	*philo, int data_mat)
 void	*routine(void *arg)
 {
 	t_philo	*philo;
-	int		data_mat;
+	int		data_died;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 == 0)
 		sleep_ino(philo->info_data->nbr_eat, philo);
-	data_mat = 0;
-	ft_routine (philo, data_mat);
+	data_died = 0;
+	ft_routine (philo, data_died);
 	return (NULL);
 }
